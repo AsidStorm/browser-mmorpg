@@ -50,6 +50,10 @@ function come_in( &$user, $area ) {
         throw new \Exception("Переход не найден");
     }
 
+    if( $area['restriction_id'] ) {
+        restriction_check($user, $area['restriction_id']);
+    }
+
     $user['area_id'] = $area['id'];
 
     if( $area['freeze_time'] > 0 ) {
